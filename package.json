@@ -1,6 +1,7 @@
 {
   "name": "results-oriented",
   "packageManager": "yarn@4.6.0",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -11,7 +12,8 @@
   "scripts": {
     "lint": "eslint src/",
     "format": "prettier src/ --write",
-    "build": "tsup"
+    "build": "tsup",
+    "publish":  "npm login && npm publish"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
