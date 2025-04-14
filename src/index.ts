@@ -2,8 +2,6 @@
  * Hello from `results-oriented`!
  */
 
-
-
 /**
  * The core type of results-oriented. Either an OK<Value> or a NotOk<Fallback, Error>:
  * ```ts
