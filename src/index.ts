@@ -71,15 +71,15 @@ const isOk = <Value, Fallback = undefined, Error = unknown>(
  * @param error - (optional) - an error response object to pass through for downstream error handling
  */
 export const fail = <Fallback = undefined, Error = unknown>({
-  fallback,
+  value,
   error,
 }: {
-  fallback?: Fallback;
+  value?: Fallback;
   error?: Error;
 }): NotOk<Fallback, Error> => {
   return {
     ok: false,
-    result: fallback as Fallback,
+    result: value as Fallback,
     error,
   };
 };
@@ -95,10 +95,15 @@ export const pass = <Value>({ value }: { value: Value }): Ok<Value> => {
   };
 };
 
-export default {
-  pass,
-  fail,
-  isOk,
-};
+/**
+ * Hello from ResultsOriented!
+ */
+const ResultsOriented = {
+    isOk,
+    pass,
+    fail,
+}
+
+export default ResultsOriented;
 
 // Implement wrap, unwrap, pipe, encase, match
