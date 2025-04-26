@@ -99,11 +99,56 @@ export const pass = <Value>({ value }: { value: Value }): Ok<Value> => {
  * Hello from ResultsOriented!
  */
 const ResultsOriented = {
-    isOk,
-    pass,
-    fail,
-}
+  isOk,
+  pass,
+  fail,
+};
 
 export default ResultsOriented;
 
 // Implement wrap, unwrap, pipe, encase, match
+
+type Function<Props = unknown, Return = unknown> = (props: Props) => Return;
+
+const safe = <P, R, F>(func: Function<P, R>, fallbackSelector?: (e: unknown) => F) => {
+    return (props: P) => {
+        try {
+            return func(props);
+        } catch (e) {
+            if (fallbackSelector) {
+                return fallbackSelector(e);
+            }
+        }
+    }
+}
+
+
+interface PipeOptions {
+    safe: boolean,
+    safeFallback: <T>(e: unknown) => T,
+}
+
+const defaultPipeOptions = {
+    safe: true,
+    safeFallback: (e: unknown) => console.error(e),
+}
+//TODO: Add safeness in here, tracking of overall state
+export const pipe = (...funcs: Function<unknown, unknown>[]) => {
+    let first = true;
+    return (props, options: PipeOptions) => {
+        const _options =  {...defaultPipeOptions, ...options };
+        // do something with options
+        let result = undefined;
+        for (const func of funcs) {
+            result = func(first ? props : result);
+            if (first) first = false;
+        }
+        return result;
+    }
+};
+
+const assert = (value: unknown, message?: string) => {
+    if (!value) {
+       throw new Error(message);
+    }
+}
