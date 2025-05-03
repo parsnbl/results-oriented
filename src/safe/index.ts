@@ -1,6 +1,6 @@
-import { Result } from './main.types';
-import { pass, fail, isOk } from './index';
-import { AssertOptions } from './safe.types';
+import type { Result } from '../types';
+import { pass, fail, isOk } from '../index';
+import { AssertOptions } from './types';
 
 const assert = <Exception extends Error>(
   value: unknown,

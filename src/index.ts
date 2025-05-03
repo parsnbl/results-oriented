@@ -1,4 +1,4 @@
-import { Ok, NotOk, Result, Function, ResultsFunction } from './main.types';
+import { Ok, NotOk, Result, Function, ResultsFunction } from './types';
 /**
  * Determine if a result object is Ok. Acts as a type-guard for whether functions succeed or fail.
  *
