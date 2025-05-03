@@ -1,5 +1,4 @@
 import { Ok, NotOk, Result, Function, ResultsFunction } from './main.types';
-
 /**
  * Determine if a result object is Ok. Acts as a type-guard for whether functions succeed or fail.
  *
@@ -95,3 +94,4 @@ const assert = (value: unknown, { error }: { error: Error | string }) => {
 };
 
 export { isOk, fail, pass, pipe, assert, makeSafe, makeUnsafe };
+export type { Ok, NotOk, Result, Function, ResultsFunction };
