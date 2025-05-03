@@ -3,8 +3,8 @@
   "packageManager": "yarn@4.6.0",
   "version": "0.1.0",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/base.js",
+  "module": "./dist/base.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -13,18 +13,28 @@
     ".": {
       "import": {
         "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
+        "default": "./dist/base.mjs"
       },
       "require": {
-        "types": "./dist/types/index.d.ts",
-        "default": "./dist/index.common.js"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/base.js"
+      }
+    },
+    "./safe": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/safe.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/safe.js"
       }
     }
   },
   "scripts": {
     "lint": "eslint src/",
     "format": "prettier src/ --write",
-    "build": "tsup",
+    "build": "rm -rf dist && rollup -c",
     "publish": "npm login && npm publish"
   },
   "devDependencies": {
@@ -35,7 +45,7 @@
     "prettier": "^3.5.3",
     "rollup": "^4.40.0",
     "rollup-plugin-dts": "^6.2.1",
-    "tsup": "^8.4.0",
+    "tslib": "^2.8.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.29.1"

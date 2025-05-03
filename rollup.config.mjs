@@ -7,18 +7,37 @@ export default [
     input: 'src/index.ts',
     output: [
 			{
-      	file: 'bundle.js',
+				file: 'dist/base.js',
       	format: 'cjs',
+				sourcemap: true,
 			},
 			{
-				file: 'bundle.mjs',
+				file: 'dist/base.mjs',
 				format: 'es',
+				sourcemap: true,
 			}],
     plugins: [typescript()],
   },
+	{
+		input: 'src/safe.ts',
+		output: [
+			{
+				file: 'dist/safe.js',
+				format: 'cjs',
+				sourcemap: true,
+			},
+			{
+				file: 'dist/safe.mjs',
+				format: 'es',
+				sourcemap: true,
+			}],
+		plugins: [typescript()],
+	},
   {
-    input: 'dist/dts/index.d.ts',
-		output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    input: 'dist/types/index.d.ts',
+		output: [
+			{ file: 'dist/index.d.ts', format: 'es' },
+		],
 		plugins: [dts()],
   },
 ];
